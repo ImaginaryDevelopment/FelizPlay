@@ -5,7 +5,7 @@
     <ItemGroup>
         <None Include="index.html" />
         <Compile Include="Extensions.fs" />
-        <Compile Include="Components.fs" />
+        <Compile Include="Components/SampleComponents.fs" />
         <Compile Include="Main.fs" />
     </ItemGroup>
     <ItemGroup>

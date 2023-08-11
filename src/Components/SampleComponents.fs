@@ -68,6 +68,6 @@ let Router() =
             | [ "counter" ] ->
                 printfn "Router: Counter"
                 Counter()
-            | otherwise -> Html.h1 "Not found"
+            | _ -> Html.h1 "Not found"
         ]
     ]

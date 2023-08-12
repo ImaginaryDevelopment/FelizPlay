@@ -4,12 +4,20 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include="index.html" />
-        <Compile Include="Extensions.fs" />
+        <Compile Include="Schema.fs" />
+        <Compile Include="Reusable.fs" />
+        <Compile Include="JsExtensions.fs" />
+
+        <Compile Include="Components/Store.fs" />
+        <Compile Include="Components/LinksComponent.fs" />
+        <Compile Include="Components/pages/BlendedLearning.fs" />
         <Compile Include="Components/SampleElmish.fs" />
         <Compile Include="Components/SampleComponents.fs" />
         <Compile Include="Main.fs" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Fable.Browser.WebStorage" Version="1.2.0" />
+        <PackageReference Include="Fable.Elmish" Version="4.0.2" />
         <PackageReference Include="Feliz" Version="2.6.0" />
         <PackageReference Include="Feliz.Router" Version="4.0.0" />
         <PackageReference Include="Feliz.UseElmish" Version="2.4.0" />

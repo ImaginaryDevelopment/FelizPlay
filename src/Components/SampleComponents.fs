@@ -29,18 +29,24 @@ let Counter() =
     ]
 
 let index(updateUrl) =
+    let makeLink (name: string) url =
+            Html.li [
+                Html.a [ 
+                    prop.href url
+                    prop.text name
+                    prop.onClick(fun e ->
+                        e.preventDefault()
+                        updateUrl url)
+                ]
+            ]
+
     Html.div [
         Html.h1 "Index"
         Html.ul [
             Html.li [
-                Html.a [ 
-                    prop.href "counter"
-                    prop.text "Counter"
-                    prop.onClick(fun e ->
-                        e.preventDefault()
-                        updateUrl "counter")
-                ]
+                makeLink "Counter" "counter"
             ]
+            Html.li [ makeLink "Blended" "blended"]
         ]
     ]
 
@@ -58,6 +64,7 @@ let Router() =
             printfn "currentUrl:%A" currentUrl
             match currentUrl with
             | [ ] ->
+            
                 printfn "Router: Index"
                 index(fun next ->
                     updateUrl (next::currentUrl)
@@ -65,6 +72,7 @@ let Router() =
             | [ "hello" ] ->
                 printfn "Router: Hello"
                 HelloWorld()
+            | [ "blended" ] -> Components.Pages.BlendedLearning.BlendedLearning()
             | [ "counter" ] ->
                 printfn "Router: Counter"
                 Counter()

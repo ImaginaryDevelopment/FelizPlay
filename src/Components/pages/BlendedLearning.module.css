@@ -1,0 +1,72 @@
+.blended_flex_item {
+  cursor: pointer;
+  margin: 5px 15px 5px 0px;
+  border: 2px solid rgb(237, 235, 233);
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+.blended_flex {
+  display: grid;
+  margin: 1%;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+.blended_search {
+  width: 100%;
+  margin: 1%;
+}
+
+.blended_progress {
+  max-width: 1400;
+  min-width: 400;
+  display: flex;
+  margin: 0 auto;
+  align-content: center;
+  flex-wrap: wrap;
+  vertical-align: top;
+  margin-top: 20;
+}
+
+.blended_flex_item:hover {
+  cursor: pointer;
+
+  border: 2px solid rgb(200, 198, 196);
+  box-sizing: border-box;
+}
+
+.col_flex {
+  flex: 1 1 49%;
+  margin: 1%;
+}
+.errorMessage {
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}
+@media screen and (max-width: 600px) {
+  .blended_flex {
+    /* width: 98%;
+    margin: 2%; */
+    grid-template-columns: auto;
+  }
+
+  .col_flex {
+    flex: 1 1 100%;
+  }
+  .blended_search {
+    width: 98%;
+    margin: 2%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .blended_flex {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .blended_flex {
+    grid-template-columns: auto auto auto;
+  }
+}

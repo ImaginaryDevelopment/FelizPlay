@@ -8,7 +8,10 @@
         <Compile Include="Reusable.fs" />
         <Compile Include="JsExtensions.fs" />
 
+        <Compile Include="Components/Adapters/Mui.fs" />
+
         <Compile Include="Components/Store.fs" />
+
         <Compile Include="Components/LinksComponent.fs" />
         <Compile Include="Components/pages/BlendedLearning.fs" />
         <Compile Include="Components/SampleElmish.fs" />

@@ -63,9 +63,9 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
             |> Seq.collect(fun child -> child.Items)
             |> Seq.map(fun child ->
                     let item = {
-                        name = if child.Name = "Bus Schedule" then "Bus Registration" else child.Name
+                        name = child.Name
                         navType = child.NavType
-                        url = if child.Name = "Bus Schedule" then "/Page/31291" else child.Url 
+                        url = child.Url 
                         script = child.Script
                         description = child.Description
                         icon = getIcon child.Icon
@@ -92,9 +92,29 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
     //     getItemsCallback(menu)
     // )
     Html.div [
+        if itemState.loading then
+            Components.Adapters.Mui.Skeleton()
+        else 
+            Html.div [
+                prop.classes [ "MuiBox-root"; "css-1nylpq2" ]
+                prop.children [
+                    // <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-oe0os1-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SearchIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
 
+                    Html.input [
+                        prop.title "Filter Links"
+                    ]
+                ]
+            ]
+        // <div class="makeStyles-grid-155 MuiBox-root css-0" id="linkscomponentbox"></div>
+        Html.div [
+            prop.id "linksComponentBox"
+            prop.classes [ "makeStyles-grid-155 MuiBox-root css-0"]
+            prop.children [
+                Html.text "Hello Blended"
+            ]
+        ]
 
     ]
 
 [<ReactComponent>]
-let linksComponent = React.functionComponent(linksView)
+let LinksComponent = React.functionComponent(linksView)

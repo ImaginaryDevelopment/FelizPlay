@@ -1,6 +1,7 @@
 module Components.Adapters.Mui
 // see migration at https://mui.com/material-ui/migration/migration-v4/
 // see example mappings at https://github.com/Shmew/Feliz.MaterialUI
+// older example at https://github.com/mvsmal/fable-material-ui
 open Feliz
 open Fable.Core.JsInterop
 

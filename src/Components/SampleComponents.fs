@@ -80,4 +80,6 @@ let withRouter f =
     ]
 
 [<ReactComponent>]
-let App () = Components.Pages.BlendedLearning.BlendedLearning ()
+let App () =
+    // Components.Adapters.MuiStyles.ThemeProvider [ prop.children [Components.Pages.BlendedLearning.BlendedLearning ()]]
+    Components.Pages.BlendedLearning.BlendedLearning ()

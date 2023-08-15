@@ -71,6 +71,8 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
 
             |}
     )
+    let classes = useStyles()
+    Browser.Dom.console.log("useStyles", classes)
     // useTranslation
     // let navigate = Feliz.Router.Router
     let getItems (menu: {| Name: string ; Items: MenuItemSrc[] |}[]) =
@@ -113,6 +115,14 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
         prop.children [
             let focusedElement = Html.div []
             focusedElement
+            Mui.Box.Box [
+                Mui.sx {| display="flex"; alignItems="flex-end" |}
+                prop.children [
+                    Html.text "I am a box"
+                    Mui.Icons.SearchIcon [ Mui.sx {| color="action.active"; mr=1; my=0.5 |}]
+                    Mui.TextField.TextField [ prop.id "input-with-sx"; Mui.sx {| width=350 |}]
+                ]
+            ]
             if itemState.loading then
                 Mui.Skeleton.Skeleton2 (Some Mui.Skeleton.Rectangular) (Some Mui.Skeleton.Wave) [ prop.width (length.percent 50.)]
             else

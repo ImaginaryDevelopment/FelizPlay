@@ -4,11 +4,16 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include="index.html" />
+        
         <Compile Include="Schema.fs" />
+        <Compile Include="FelizSchema.fs" />
+
         <Compile Include="Reusable.fs" />
         <Compile Include="JsExtensions.fs" />
 
-        <Compile Include="Components/Adapters/Mui.fs" />
+        <Compile Include="Components/Adapters/MuiBindings/MuiBindings.fs"/>
+        <Compile Include="Components/Adapters/MuiBindings/MuiStyles.fs" />
+        <Compile Include="Components/Adapters/MuiBindings/Mui.fs" />
 
         <Compile Include="Components/Store.fs" />
 

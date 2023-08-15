@@ -1,6 +1,7 @@
 module Components.Links
 
 open Feliz
+open Components.Adapters
 
 open Reusable
 
@@ -52,6 +53,24 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
     let itemState, setItemState = React.useState(initialState)
     let original, setOriginal = React.useState<MenuItem[]>(Array.empty)
     let filter, setFilter = React.useState("")
+
+    let useStyles = MuiStyles.makeStyles_get (fun theme ->
+            {|
+                grid= Fable.Core.JsInterop.createObj [
+
+                        "display", "grid"
+                        "gridTemplateColumns", "1fr 1fr 1fr 1fr"
+                        "paddingTop", 40
+                        "paddingBottom", 20
+                        theme.breakpoints.down Mui.MaterialUI.BreakpointKey.Sm, {| gridTemplateColumns = "1fr" |}
+                ]
+                button= {| margin= 5 |}
+                skeleton= {|
+
+                |}
+
+            |}
+    )
     // useTranslation
     // let navigate = Feliz.Router.Router
     let getItems (menu: {| Name: string ; Items: MenuItemSrc[] |}[]) =
@@ -81,8 +100,7 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
             
         setItemState({loading = false; data = items; hasBlendedLearning = hasBlended})
         setOriginal items
-        if hasBlended then
-            ""
+        if hasBlended then ""
         else "1fr 3fr"
         |> setGridTemplateOption
         items
@@ -92,29 +110,43 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
     //     getItemsCallback(menu)
     // )
     Html.div [
-        if itemState.loading then
-            Components.Adapters.Mui.Skeleton()
-        else 
-            Html.div [
-                prop.classes [ "MuiBox-root"; "css-1nylpq2" ]
-                prop.children [
-                    // <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-oe0os1-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SearchIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-
-                    Html.input [
-                        prop.title "Filter Links"
+        prop.children [
+            let focusedElement = Html.div []
+            focusedElement
+            if itemState.loading then
+                Mui.Skeleton.Skeleton2 (Some Mui.Skeleton.Rectangular) (Some Mui.Skeleton.Wave) [ prop.width (length.percent 50.)]
+            else
+                Mui.Box.Box [
+                    Mui.sx {| display="flex"; alignItems="flex-end" |}
+                    prop.children [
+                        Html.text "I am a box"
+                        Mui.Icons.SearchIcon [ Mui.sx {| color="action.active"; mr=1; my=0.5 |}]
+                        Mui.TextField.TextField [ prop.id "input-with-sx"; Mui.sx {| width=350 |}]
                     ]
                 ]
+            if not itemState.hasBlendedLearning && input.category = Schema.BlendedLearning then
+                Html.div [
+                    Html.p [
+                        prop.style [
+                            style.textAlign.center
+                        ]
+                    ]
+                ]
+            Mui.Box.Box [
+                prop.classes []
             ]
-        // <div class="makeStyles-grid-155 MuiBox-root css-0" id="linkscomponentbox"></div>
-        Html.div [
-            prop.id "linksComponentBox"
-            prop.classes [ "makeStyles-grid-155 MuiBox-root css-0"]
-            prop.children [
-                Html.text "Hello Blended"
+
+            // <div class="makeStyles-grid-155 MuiBox-root css-0" id="linkscomponentbox"></div>
+            Html.div [
+                prop.id "linksComponentBox"
+                prop.classes [ "makeStyles-grid-155 MuiBox-root css-0"]
+                prop.children [
+                    Html.text "Hello Blended"
+                ]
             ]
         ]
 
     ]
 
 [<ReactComponent>]
-let LinksComponent = React.functionComponent(linksView)
+let LinksComponent args = React.functionComponent(linksView) args

@@ -31,7 +31,7 @@ let Counter() =
 let index(updateUrl) =
     let makeLink (name: string) url =
             Html.li [
-                Html.a [ 
+                Html.a [
                     prop.href url
                     prop.text name
                     prop.onClick(fun e ->
@@ -54,8 +54,7 @@ let index(updateUrl) =
 /// A React component that uses Feliz.Router
 /// to determine what to show based on the current URL
 /// </summary>
-[<ReactComponent>]
-let Router() =
+let withRouter f = 
     let (currentUrl, updateUrl) =
         React.useState(Router.currentUrl())
     React.router [
@@ -72,10 +71,13 @@ let Router() =
             | [ "hello" ] ->
                 printfn "Router: Hello"
                 HelloWorld()
-            | [ "blended" ] -> Components.Pages.BlendedLearning.BlendedLearning()
+            | [ "blended" ] -> f()
             | [ "counter" ] ->
                 printfn "Router: Counter"
                 Counter()
             | _ -> Html.h1 "Not found"
         ]
     ]
+
+[<ReactComponent>]
+let App () = Components.Pages.BlendedLearning.BlendedLearning ()

@@ -26,18 +26,6 @@ type IItem = {
     hasBlendedLearning: bool
 }
 
-type MenuItemSrc = {
-    Name: string
-    NavType: obj
-    Url: string
-    Script: obj
-    Description: obj
-    Icon: obj
-    Acl: obj
-    Properties: obj option
-    UrlKey: obj option
-}
-
 let getIcon name =
     "test"
 module Views =
@@ -47,7 +35,7 @@ module Views =
         ]
     let loadedView =  ()
 
-let linksView (input: {| category : Schema.LinkMenuType |} ) =
+let linksView (input: {| category: Schema.LinkMenuType |} ) =
     let initialState = {loading= true; data = Array.empty; hasBlendedLearning = false}
     let (gridTemplateOption, setGridTemplateOption) = React.useState "1fr 3fr"
     let itemState, setItemState = React.useState(initialState)
@@ -72,10 +60,14 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
             |}
     )
     let classes = useStyles()
+    // let menu =
+    //     let fSelector (state: Store.RootState) =
+    //         state.menu.menu
+    //     Redux.useSelector(fSelector)
     Browser.Dom.console.log("useStyles", classes)
     // useTranslation
     // let navigate = Feliz.Router.Router
-    let getItems (menu: {| Name: string ; Items: MenuItemSrc[] |}[]) =
+    let getItems (menu: {| Name: string; Items: Store.MenuSlice.MenuItemSrc[] |}[]) =
         let mutable hasBlended = false
         let items =
             menu
@@ -106,6 +98,7 @@ let linksView (input: {| category : Schema.LinkMenuType |} ) =
         else "1fr 3fr"
         |> setGridTemplateOption
         items
+
     let getItemsCallback = React.useCallback(getItems, Array.singleton input.category)
     // React.useEffect( fun () ->
     //     setItemState(initialState)

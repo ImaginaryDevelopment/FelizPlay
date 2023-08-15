@@ -18,5 +18,6 @@ let createTheme obj : obj = import "createTheme" "@mui/material/styles"
 
 // attempt to import ThemeProvider
 // let ThemeProvider : IReactProperty list -> ReactElement = import "ThemeProvider" "@mui/material/styles"
+// this should have used createElement, not import
 let ThemeProvider : obj -> ReactElement = import "ThemeProvider" "@mui/material/styles"
 // let ThemeProvider : ReactElement list -> ReactElement = import "ThemeProvider" "@mui/material/styles"

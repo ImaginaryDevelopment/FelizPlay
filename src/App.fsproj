@@ -11,11 +11,17 @@
         <Compile Include="Reusable.fs" />
         <Compile Include="JsExtensions.fs" />
 
-        <Compile Include="Components/Adapters/MuiBindings/MuiBindings.fs"/>
+        <Compile Include="Components/Adapters/Redux.fs" />
+        <Compile Include="Components/Adapters/Msal.fs" />
+        <Compile Include="Components/Adapters/MuiBindings/MuiBindings.fs" />
         <Compile Include="Components/Adapters/MuiBindings/MuiStyles.fs" />
         <Compile Include="Components/Adapters/MuiBindings/Mui.fs" />
 
-        <Compile Include="Components/Store.fs" />
+        <Compile Include="Components/Store/StoreSchema.fs" />
+        <Compile Include="Components/Store/UserSlice.fs" />
+        <Compile Include="Components/Store/MenuSlice.fs" />
+
+        <Compile Include="Components/Store/Store.fs" />
 
         <Compile Include="Components/LinksComponent.fs" />
         <Compile Include="Components/pages/BlendedLearning.fs" />
@@ -25,6 +31,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Fable.Browser.WebStorage" Version="1.2.0" />
+        <PackageReference Include="Fable.Core" Version="4.0.0" />
         <PackageReference Include="Fable.Elmish" Version="4.0.2" />
         <PackageReference Include="Feliz" Version="2.6.0" />
         <PackageReference Include="Feliz.Router" Version="4.0.0" />

@@ -18,6 +18,7 @@
         <Compile Include="Components/Adapters/MuiBindings/Mui.fs" />
 
         <Compile Include="Components/Store/StoreSchema.fs" />
+        <Compile Include="Components/Store/TokenSlice.fs" />
         <Compile Include="Components/Store/UserSlice.fs" />
         <Compile Include="Components/Store/MenuSlice.fs" />
 

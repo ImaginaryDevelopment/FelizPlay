@@ -22,3 +22,6 @@ module Stylesheet =
 
     /// Loads a CSS module and makes the classes within available
     let inline load (path: string) = importDefault<IStylesheet> path
+
+[<Emit("new Date($1)")>]
+let createDate (arg:obj) : Fable.Core.JS.Date = jsNative

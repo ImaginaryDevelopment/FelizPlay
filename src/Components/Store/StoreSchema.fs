@@ -5,6 +5,7 @@ type PayloadAction<'t> =
     abstract member payload: 't
 type Reducer<'t> =
     abstract member reducer: obj
+    abstract member actions: obj
 
 
 module Imports =

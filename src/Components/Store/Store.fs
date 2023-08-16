@@ -14,6 +14,7 @@ type RootState = {
     student: obj
     error: obj
 }
+
 [<AbstractClass>]
 type Store<'t> =
     // getState
@@ -22,10 +23,12 @@ type Store<'t> =
 // pretty wild function here, hack in any/obj for now
 let configureStore : obj -> Store<RootState> = import "configureStore" "@reduxjs/toolkit"
 
-let store = configureStore({| reducer= {|
-    user= UserSlice.userSlice.reducer
-    menu= MenuSlice.menuSlice.reducer
-|}|})
+let store = configureStore({|
+    reducer= {|
+        user= UserSlice.userSlice.reducer
+        menu= MenuSlice.menuSlice.reducer
+    |}
+|})
 
 
 module internal Impl = // https://github.com/fable-compiler/fable-browser/tree/master/src/WebStorage
